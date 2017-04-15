@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'figure'
+
+module FigureCommand
+  class << self
+    def create_file filename, contents
+      File.open filename, 'w' do |f|
+        f.write contents
+      end
+    end
+
+    def default_editor
+      ENV['EDITOR'] || 'vi'
+    end
+
+    def edit_file filename
+      system "#{default_editor} #{filename}"
+    end
+
+    def execute app_name
+      raise Figure::Errors::ApplicationRequired, 'Application required' unless app_name
+
+      filename = Figure.filename_for app_name
+
+      if !File.exists? filename
+        config = Figure.config_for filename
+        create_file filename, config
+      end
+
+      edit_file filename
+    end
+
+    def usage
+      puts "Usage: #{$0} application"
+    end
+  end
+end
+
+begin
+  FigureCommand.execute ARGV.first
+rescue => e
+  puts e.message
+  puts FigureCommand.usage
+  exit 1
+end
+
+exit 0
