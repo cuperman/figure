@@ -1,28 +1,23 @@
 # Figure
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/figure`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A simple command line utility to help remember how to configure specific text editors and applications
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'figure'
-```
-
-And then execute:
-
+    $ git clone git@github.com:cuperman/figure.git
     $ bundle
+    $ rake build
+    $ gem install pkg/figure-0.1.0.gem
 
-Or install it yourself as:
-
-    $ gem install figure
+*This would be a lot easier if I pushed to rubygems.org*
 
 ## Usage
 
-TODO: Write usage instructions here
+Execute the figure command line utility, and specify an application to configure, for example:
+
+    $ figure textmate
+
+This currently only supports textmate.
 
 ## Development
 
@@ -38,4 +33,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
